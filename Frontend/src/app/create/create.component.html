@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <div class="col-100">
+        <h1>Crear Usuario</h1>
+        <form [formGroup]="form" (ngSubmit)="enviarCodigo()">
+          <div class="row">
+            <label for="username">Username:</label>
+            <input class="campo" type="text" id="username" formControlName="username">
+          </div>
+          <div class="row">
+            <label for="nombre">Nombres:</label>
+            <input class="campo" type="text" id="nombre" formControlName="nombre">
+          </div>
+          <div class="row">
+            <label for="apellido">Apellidos:</label>
+            <input class="campo" type="text" id="apellido" formControlName="apellido">
+          </div>
+          <div class="row">
+            <label for="correo">Correo Electronico:</label>
+            <input class="campo" type="text" id="correo" formControlName="correo">
+          </div>
+          <div class="row">
+            <label for="password">Contraseña:</label>
+            <input class="campo" type="text" id="password" formControlName="password">
+          </div>
+          <div class="row">
+            <div class="col-100 flex j-end">
+              <button [disabled]="!form.valid" type="submit">Registrarse</button>
+            </div>
+          </div>
+          <div *ngIf="mensaje" class="mensaje">
+            Mensaje: Usuario Creado Correctamente
+          </div>
+        </form>  
+      </div>
+    </div>
+  </div>
+  

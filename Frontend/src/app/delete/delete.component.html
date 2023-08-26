@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+      <div class="col-100">
+        <h1>Borrar Usuario</h1>
+        <form [formGroup]="form" (ngSubmit)="enviarCodigo()">
+          <div class="row">
+            <label for="username">Username:</label>
+            <input class="campo" type="text" id="username" formControlName="username">
+          </div>
+          <div class="row">
+            <div class="col-100 flex j-end">
+              <button [disabled]="!form.valid" type="submit">Eliminar Usuario</button>
+            </div>
+          </div>
+          <div *ngIf="mensaje" class="mensaje">
+            Mensaje: Cuenta eliminada Correctamente
+          </div>
+        </form>  
+      </div>
+    </div>
+  </div>
