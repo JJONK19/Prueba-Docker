@@ -9,7 +9,7 @@ CORS(app)
 def createDatabase():
     try:
         conn = psycopg2.connect(
-            host="localhost",
+            host="db",
             database="postgres",
             user="postgres",
             password="postgres"
@@ -34,7 +34,7 @@ def createDatabase():
 def createTable():
     try:
         conn = psycopg2.connect(
-            host="localhost",
+            host="db",
             database="usuarios",
             user="postgres",
             password="postgres"
@@ -70,7 +70,7 @@ def crearUsuario():
     print(data)
     try: 
         conn = psycopg2.connect(
-            host="localhost",
+            host="db",
             database="usuarios",
             user="postgres",
             password="postgres"
@@ -98,7 +98,7 @@ def verificarUsuario():
     password = data.get('password')
     
     conn = psycopg2.connect(
-        host="localhost",
+        host="db",
         database="usuarios",
         user="postgres",
         password="postgres"
@@ -127,7 +127,7 @@ def actualizarUsuario(id):
         
         elif request.method == 'PUT':
             conn = psycopg2.connect(
-                host="localhost",
+                host="db",
                 database="usuarios",
                 user="postgres",
                 password="postgres"
@@ -168,7 +168,7 @@ def eliminarUsuario(id):
             return response
         elif request.method == 'DELETE':
             conn = psycopg2.connect(
-                host="localhost",
+                host="db",
                 database="usuarios",
                 user="postgres",
                 password="postgres"
@@ -200,4 +200,4 @@ createDatabase()
 createTable()
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run()
