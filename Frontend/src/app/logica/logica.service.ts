@@ -10,22 +10,22 @@ export class LogicaService {
 
   constructor(private http: HttpClient) { }
 
-  ejecutarRead(entrada: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-    };
-    return this.http.post<any>(URL + 'read', entrada);
-  }
-
   ejecutarCreate(entrada: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
     };
-    return this.http.post<any>(URL + 'create', entrada);
+    return this.http.post<any>(API + 'create', entrada, httpOptions);
+  }
+
+  ejecutarRead(entrada: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+    return this.http.post<any>(API + 'read', entrada);
   }
 
   ejecutarUpdate(id: string, nuevosDatos: any): Observable<any> {
@@ -35,11 +35,11 @@ export class LogicaService {
       })
     };
 
-    return this.http.put<any>(API + "recurso/" + `${id}`, nuevosDatos, httpOptions);
+    return this.http.put<any>(API + "update/" + `${id}`, nuevosDatos, httpOptions);
   }
 
   ejecutarDelete(id: string): Observable<any> {
-    return this.http.delete(API + `${id}`);
+    return this.http.delete(API + 'delete/' + `${id}`);
   }
 
 }

@@ -16,8 +16,14 @@
               <button [disabled]="!form.valid" type="submit">Actualizar</button>
             </div>
           </div>
-          <div *ngIf="mensaje" class="mensaje">
-            Mensaje: Usuario Actualizado Correctamente
+          <div *ngIf="mensaje === '2'" class="mensaje">
+            Mensaje: El usuario no existe
+          </div>
+          <div *ngIf="mensaje === '1'" class="mensaje">
+            Mensaje: Contraseña actualizada correctamente
+          </div>
+          <div *ngIf="mensaje === '3'" class="mensaje">
+            Mensaje: Error al actualizar contraseña
           </div>
         </form>  
       </div>

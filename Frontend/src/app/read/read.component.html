@@ -16,7 +16,10 @@
               <button [disabled]="!form.valid" type="submit">Iniciar Sesion</button>
             </div>
           </div>
-          <div *ngIf="mensaje" class="mensaje">
+          <div *ngIf="mensaje === '2'" class="mensaje">
+            Mensaje: El usuario y/o la contraseña son erroneos
+          </div>
+          <div *ngIf="mensaje === '1'" class="mensaje">
             Mensaje: Inicio de Sesión Correcto
           </div>
         </form>  

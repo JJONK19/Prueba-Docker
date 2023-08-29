@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit{
   correo: string = "";
   username: string = "";
   password: string = "";
-  mensaje: boolean = false;
+  mensaje: string = "0";
 
   constructor(private analizarService: LogicaService, private router: Router) {
     this.form = new FormGroup({
@@ -59,12 +59,7 @@ export class CreateComponent implements OnInit{
     this.analizarService.ejecutarCreate(objeto).subscribe((res:any)=>{
       console.log(res)
       //ACA SE CAMBIA PARA ALMACENAR VARIABLES GLOBALES Y COSAS DE LA SALIDA
-      if(res.Login == "0"){
-        console.log("No se pudo iniciar sesion.")
-      }else{
-        this.mensaje = true;
-      }
-      this.mensaje = false;
+      this.mensaje = res.mensaje
       
     }, err=>{
       console.log(err)

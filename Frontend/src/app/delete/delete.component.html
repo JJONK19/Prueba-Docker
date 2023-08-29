@@ -12,8 +12,14 @@
               <button [disabled]="!form.valid" type="submit">Eliminar Usuario</button>
             </div>
           </div>
-          <div *ngIf="mensaje" class="mensaje">
-            Mensaje: Cuenta eliminada Correctamente
+          <div *ngIf="mensaje === '2'" class="mensaje">
+            Mensaje: El usuario no existe
+          </div>
+          <div *ngIf="mensaje === '1'" class="mensaje">
+            Mensaje: Usuario Eliminado Correctamente
+          </div>
+          <div *ngIf="mensaje === '3'" class="mensaje">
+            Mensaje: Error al eliminar el usuario
           </div>
         </form>  
       </div>

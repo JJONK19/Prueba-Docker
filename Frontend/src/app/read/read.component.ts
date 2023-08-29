@@ -12,7 +12,7 @@ export class ReadComponent implements OnInit{
   form: FormGroup;
   username: string = "";
   password: string = "";
-  mensaje: boolean = false;
+  mensaje: string = "0";
   
   constructor(private analizarService: LogicaService, private router: Router) {
     this.form = new FormGroup({
@@ -42,12 +42,7 @@ export class ReadComponent implements OnInit{
     this.analizarService.ejecutarRead(objeto).subscribe((res:any)=>{
       console.log(res)
       //ACA SE CAMBIA PARA ALMACENAR VARIABLES GLOBALES Y COSAS DE LA SALIDA
-      if(res.Login == "0"){
-        console.log("El usuario no existe.")
-      }else{
-        this.mensaje = true;
-      }
-      this.mensaje = false;
+      this.mensaje = res.mensaje
       
     }, err=>{
       console.log(err)

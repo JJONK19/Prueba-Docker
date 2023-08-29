@@ -28,8 +28,14 @@
               <button [disabled]="!form.valid" type="submit">Registrarse</button>
             </div>
           </div>
-          <div *ngIf="mensaje" class="mensaje">
+          <div *ngIf="mensaje === '2'" class="mensaje">
+            Mensaje: Ya existe un usuario con el mismo correo/username
+          </div>
+          <div *ngIf="mensaje === '1'" class="mensaje">
             Mensaje: Usuario Creado Correctamente
+          </div>
+          <div *ngIf="mensaje === '3'" class="mensaje">
+            Mensaje: Error al crear el usuario
           </div>
         </form>  
       </div>
