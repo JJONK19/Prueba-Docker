@@ -1,23 +1,31 @@
-# Usa una imagen base de Node.js
-FROM node:16.14.2 as build
+# syntax=docker/dockerfile:1.4
 
-# Establece el directorio de trabajo en /app
-WORKDIR /app
+FROM --platform=$BUILDPLATFORM node:17.0.1-bullseye-slim as builder
 
-# Copia los archivos package.json y package-lock.json al contenedor
-COPY package*.json ./
+RUN mkdir /project
+WORKDIR /project
 
-# Instala las dependencias del proyecto
-RUN npm install
+RUN npm install -g @angular/cli@13
 
-# Copia el resto de los archivos al contenedor
+COPY package.json package-lock.json ./
+RUN npm ci
+
 COPY . .
+CMD ["ng", "serve", "--host", "0.0.0.0"]
 
-# Compila la aplicación Angular
-RUN npm run build
+FROM builder as dev-envs
 
-# Expone el puerto 4200 para acceder a la aplicación
-EXPOSE 4200
+RUN <<EOF
+apt-get update
+apt-get install -y --no-install-recommends git
+EOF
 
-# Comando para iniciar la aplicación Angular
-CMD ["npm", "start"]
+RUN <<EOF
+useradd -s /bin/bash -m vscode
+groupadd docker
+usermod -aG docker vscode
+EOF
+
+COPY --from=gloursdocker/docker / /
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]

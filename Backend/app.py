@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, make_response
-from flask_cors import CORS
+from flask_cors import *
 import psycopg2
 
 app = Flask(__name__)
@@ -61,10 +61,12 @@ def createTable():
 
 #Consultas
 @app.route('/')
+@cross_origin()
 def index():
     return "¡Bienvenido a mi backend!"
 
 @app.route('/create', methods=['POST'])
+@cross_origin()
 def crearUsuario():
     data = request.get_json()
     print(data)
@@ -92,6 +94,7 @@ def crearUsuario():
         return jsonify({'mensaje': '3'}), 500
 
 @app.route('/read', methods=['POST'])
+@cross_origin()
 def verificarUsuario():
     data = request.get_json()
     username = data.get('username')
@@ -114,6 +117,7 @@ def verificarUsuario():
     return jsonify({'mensaje': '2'}), 404
 
 @app.route('/update/<string:id>', methods=['PUT'])
+@cross_origin()
 def actualizarUsuario(id):
     data = request.get_json()
 
@@ -158,6 +162,7 @@ def actualizarUsuario(id):
         return jsonify({'mensaje': '3'}), 500
 
 @app.route('/delete/<string:id>', methods=['DELETE'])
+@cross_origin()
 def eliminarUsuario(id):
     try:
         if request.method == 'OPTIONS':
@@ -200,4 +205,5 @@ createDatabase()
 createTable()
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0')
+

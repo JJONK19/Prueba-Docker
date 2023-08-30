@@ -1,23 +1,33 @@
-version: '3'
+version: '3.8' 
+
 services:
   angular:
-    build: ./Frontend  # Ruta a la carpeta de tu aplicación Angular
+    build: ./Frontend  
     ports:
-      - "4200:4200"  # Mapeo del puerto del contenedor al puerto del host
+      - "4200:4200" 
+    networks:
+      - local
 
   web:
-    build: ./Backend  # Ruta a la carpeta de tu aplicación Flask
+    build: ./Backend 
     ports:
-      - "5000:5000"  # Mapeo del puerto del contenedor al puerto del host
+      - "5000:5000"  
     depends_on:
-      - db  # Dependencia del servicio de base de datos
+      - db  
+    networks:
+      - local  
 
   db:
-    image: postgres:latest  # Imagen de PostgreSQL desde Docker Hub
+    image: postgres:latest 
     ports:
-      - "5435:5435"  # Mapeo del puerto del contenedor al puerto del host
+      - "5435:5435"  
     environment:
-      POSTGRES_DB: usuarios  # Cambia esto al nombre de tu base de datos
-      POSTGRES_USER: postgres    # Cambia esto al nombre de usuario de PostgreSQL
-      POSTGRES_PASSWORD: postgres  # Cambia esto a la contraseña de PostgreSQL
+      POSTGRES_DB: usuarios 
+      POSTGRES_USER: postgres   
+      POSTGRES_PASSWORD: postgres 
+    networks:
+      - local  
+
+networks:
+  local: 
 

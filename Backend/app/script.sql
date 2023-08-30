@@ -15,4 +15,5 @@ CREATE TABLE Usuarios (
 );
 
 -- Salir del prompt de PostgreSQL
+-- docker run --name postgre -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres --ip 172.17.0.10 -d postgres
 \q
